@@ -1,4 +1,4 @@
-Command line utility to add banners to markdown-like headers in text files.
+# What's it do?
 
 Before
 
@@ -62,3 +62,6 @@ Use `-h` to see full options list:
 # Rationale
 
 Markdown's `#` for headlines is wonderfully easy to type and easy for programs to parse. However, contrary to markdown's original intentions, it can make headings difficult to spot in long documents. The underlining syntax solves the visibility problem, but at the expense of both other benefits. This system is the best of all worlds -- a system that's easy to type, easy to parse, and easy to see in a plain text document.
+
+Try this neat trick in vim: `:g/^#` to see an outline of the document. Use `:grep` or [fzf.vim](https://github.com/junegunn/fzf.vim) to making viewing the outline even easier.
+
