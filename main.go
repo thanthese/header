@@ -11,7 +11,7 @@ import (
 
 var headingChars = []string{"=", "-", "\"", "'"}
 
-const defaultWidth int = 45
+const defaultWidth int = 75
 
 func main() {
 	level := flag.Int("d", 0, "(optional) Header `depth` 1-4, or 0 to derive from input. (default 0)")

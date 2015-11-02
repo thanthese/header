@@ -57,7 +57,7 @@ Use `-h` to see full options list:
       -p plain
             (optional) Don't include banner -- "plain". (default with banners)
       -w width
-            (optional) Header width. (default 45)
+            (optional) Header width. (default 75)
 
 # Rationale
 
