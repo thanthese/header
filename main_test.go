@@ -2,27 +2,6 @@ package main
 
 import "testing"
 
-func TestGetLevel(t *testing.T) {
-	cases := []struct {
-		in   string
-		want int
-	}{
-		{"# test", 1},
-		{"## test", 2},
-		{"### test", 3},
-		{"#### test", 4},
-		{"##### test", -1},
-		{"test", -1},
-		{"", -1},
-	}
-	for _, c := range cases {
-		got := getLevel(c.in)
-		if got != c.want {
-			t.Errorf("getLevel(%q) == %v, want %v", c.in, got, c.want)
-		}
-	}
-}
-
 func TestStripHeaders(t *testing.T) {
 	cases := []struct {
 		in   string
@@ -39,19 +18,6 @@ func TestStripHeaders(t *testing.T) {
 		{"test ---", "test"},
 		{"# test --", "test"},
 		{"## test -", "test"},
-		{"test \"\"\"", "test"},
-		{"# test \"\"", "test"},
-		{"## test \"", "test"},
-		{"test '''", "test"},
-		{"test ''' ", "test"},
-		{"# test ''", "test"},
-		{"## test '", "test"},
-		{"## \"test\" '", "\"test\""},
-		{"## test ''''''''\n", "test"},
-		{"##  test '", "test"},
-		{"##  test  '", "test"},
-		{"##  test  ' ", "test"},
-		{"  test  ' ", "test"},
 		{" test", "test"},
 		{"  test", "test"},
 		{"test ", "test"},
@@ -76,13 +42,11 @@ func TestAddHeaders(t *testing.T) {
 		{"", 1, 15, false, "# ============="},
 		{"test", 1, 15, false, "# test ========"},
 		{"test", 2, 15, false, "## test -------"},
-		{"test", 3, 15, false, "### test \"\"\"\"\"\""},
-		{"test", 4, 15, false, "#### test '''''"},
-		{"test", 4, 12, false, "#### test ''"},
-		{"test ttttt", 4, 15, false, "#### test ttttt"},
-		{"test tttt", 4, 15, false, "#### test tttt"},
-		{"test ttt", 4, 15, false, "#### test ttt"},
-		{"test tt", 4, 15, false, "#### test tt ''"},
+		{"test", 1, 12, false, "# test ====="},
+		{"test ttttt", 2, 13, false, "## test ttttt"},
+		{"test tttt", 2, 13, false, "## test tttt"},
+		{"test ttt", 2, 13, false, "## test ttt"},
+		{"test tt", 2, 13, false, "## test tt --"},
 		{"test", 1, 15, true, "# test"},
 		{"test", 2, 15, true, "## test"},
 	}

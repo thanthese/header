@@ -36,7 +36,7 @@ nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 Assuming you have [go](https://golang.org/) and [git](https://git-scm.com/) installed:
 
 ```sh
-    go get http://github.com/thanthese/header
+go get http://github.com/thanthese/header
 ```
 
 # Usage
@@ -44,16 +44,16 @@ Assuming you have [go](https://golang.org/) and [git](https://git-scm.com/) inst
 Operates on `STDIN`. Intended use is to pipe the current line in your text editor through the tool and back into the active buffer. With vim that would be something like `!!header` from normal mode. A helpful mapping might be:
 
 ```viml
-nmap <c-h> :.! header -w 80<cr>
+nmap <c-h> :.!header<cr>
 ```
 
-To apply to every headline in the current document use `:g/^#/.!header -w 80`.
+To apply to every headline in the current document use `:g/^#/.!header`.
 
 Use `-h` to see full options list:
 
     Usage of header:
       -d depth
-            (optional) Header depth 1-4, or 0 to derive from input. (default 0)
+            (optional) Header depth 0-2, or -1 to derive from input. (default -1)
       -p plain
             (optional) Don't include banner -- "plain". (default with banners)
       -w width
@@ -65,3 +65,6 @@ Markdown's `#` for headlines is wonderfully easy to type and easy for programs t
 
 Try this neat trick in vim: `:g/^#` to see an outline of the document. Use `:grep` or [fzf.vim](https://github.com/junegunn/fzf.vim) to making viewing the outline even easier.
 
+# Why are there only two headline levels?
+
+If you need more than two levels, you're doing it wrong. Create more, smaller files. If you really, really need the extra depth, consider using a tool that supports that complexity -- something with folding capabilities.
